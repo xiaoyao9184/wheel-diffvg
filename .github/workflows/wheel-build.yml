@@ -1,0 +1,175 @@
+
+name: Wheel Build/Publish name with CUDA
+
+on:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - diffvg
+      - .github/workflows/wheel-build.yml
+  workflow_dispatch:
+    inputs:
+      remote_url:
+        description: diffvg remote url(like 'https://github.com/BachiLi/diffvg.git')
+        required: true
+        default: https://github.com/BachiLi/diffvg.git
+      commit_id:
+        description: diffvg commit id(like 'master' '85802a71')
+        required: true
+        default: master
+
+jobs:
+  build-and-upload-wheel-package:
+    name: Build Wheel package and upload to artifact
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+
+    strategy:
+      matrix:
+        IMAGE_NAME:
+          - pytorch/pytorch:1.12.0-cuda11.3-cudnn8-devel
+          - pytorch/pytorch:1.12.1-cuda11.3-cudnn8-devel
+          - pytorch/pytorch:1.13.0-cuda11.6-cudnn8-devel
+          - pytorch/pytorch:1.13.1-cuda11.6-cudnn8-devel
+          - pytorch/pytorch:2.0.0-cuda11.7-cudnn8-devel
+          - pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel
+          - pytorch/pytorch:2.1.0-cuda11.8-cudnn8-devel
+          - pytorch/pytorch:2.1.0-cuda12.1-cudnn8-devel
+          - pytorch/pytorch:2.1.1-cuda12.1-cudnn8-devel
+          - pytorch/pytorch:2.1.2-cuda11.8-cudnn8-devel
+          - pytorch/pytorch:2.1.2-cuda12.1-cudnn8-devel
+          - pytorch/pytorch:2.2.0-cuda11.8-cudnn8-devel
+          - pytorch/pytorch:2.2.0-cuda12.1-cudnn8-devel
+          - pytorch/pytorch:2.2.1-cuda11.8-cudnn8-devel
+          - pytorch/pytorch:2.2.1-cuda12.1-cudnn8-devel
+          - pytorch/pytorch:2.2.2-cuda11.8-cudnn8-devel
+          - pytorch/pytorch:2.2.2-cuda12.1-cudnn8-devel
+          - pytorch/pytorch:2.3.0-cuda11.8-cudnn8-devel
+          - pytorch/pytorch:2.3.0-cuda12.1-cudnn8-devel
+          - pytorch/pytorch:2.3.1-cuda11.8-cudnn8-devel
+          - pytorch/pytorch:2.3.1-cuda12.1-cudnn8-devel
+        BRANCH_CHECKOUT:
+          - ${{ github.event.inputs.commit_id || 'master' }}
+        REPO_CHECKOUT:
+          - ${{ github.event.inputs.remote_url || 'https://github.com/BachiLi/diffvg.git' }}
+        include:
+          - IMAGE_NAME: pytorch/pytorch:1.12.0-cuda11.3-cudnn8-devel
+            SCRIPT_NAME: build-whl@py37.sh
+          - IMAGE_NAME: pytorch/pytorch:1.12.1-cuda11.3-cudnn8-devel
+            SCRIPT_NAME: build-whl@py37.sh
+          - IMAGE_NAME: pytorch/pytorch:1.13.0-cuda11.6-cudnn8-devel
+            SCRIPT_NAME: build-whl@py38.sh
+          - IMAGE_NAME: pytorch/pytorch:1.13.1-cuda11.6-cudnn8-devel
+            SCRIPT_NAME: build-whl@py38.sh
+          - IMAGE_NAME: pytorch/pytorch:2.0.0-cuda11.7-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.1.0-cuda11.8-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.1.0-cuda12.1-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.1.1-cuda12.1-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.1.2-cuda11.8-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.1.2-cuda12.1-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.2.0-cuda11.8-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.2.0-cuda12.1-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.2.1-cuda11.8-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.2.1-cuda12.1-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.2.2-cuda11.8-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.2.2-cuda12.1-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.3.0-cuda11.8-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.3.0-cuda12.1-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.3.1-cuda11.8-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+          - IMAGE_NAME: pytorch/pytorch:2.3.1-cuda12.1-cudnn8-devel
+            SCRIPT_NAME: build-whl@py310.sh
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Checkout commit
+        run: |
+          cd diffvg
+          git remote set-url origin "${{ matrix.REPO_CHECKOUT }}"
+          git fetch origin
+          git checkout ${{ matrix.BRANCH_CHECKOUT }}
+
+      - name: Build wheel package with Docker
+        uses: addnab/docker-run-action@v3
+        with:
+          image: ${{ matrix.IMAGE_NAME }}
+          shell: bash
+          options: -v ${{ github.workspace }}:/workspace -w /workspace/diffvg
+          run: |
+            echo "Running Script"
+            chmod +x /workspace/script/${{ matrix.SCRIPT_NAME }}
+            /workspace/script/${{ matrix.SCRIPT_NAME }}
+
+      - name: Rename wheel with torch and CUDA version
+        env:
+          IMAGE_NAME: ${{ matrix.IMAGE_NAME }}
+        run: |
+          IMAGE_TAG="${IMAGE_NAME#*:}"
+          TORCH_VER="${IMAGE_TAG%%-*}"
+          TORCH_VER="${TORCH_VER//./}"
+          CUDA_PART="${IMAGE_TAG#*-}"
+          CUDA_VER="${CUDA_PART%%-*}"
+          CUDA_VER="${CUDA_VER#cuda}"
+          CUDA_VER="${CUDA_VER//./}"
+          TAG="torch${TORCH_VER}cu${CUDA_VER}"
+          WHL=$(ls ${{ github.workspace }}/diffvg/dist/diffvg-*.whl 2>/dev/null | head -1)
+          if [ -z "$WHL" ]; then echo "No whl found"; exit 1; fi
+          BASENAME=$(basename "$WHL")
+          NEWNAME="${BASENAME/-cp/+${TAG}-cp}"
+          NEWPATH="${{ github.workspace }}/diffvg/dist/$NEWNAME"
+          mv "$WHL" "$NEWPATH"
+          echo "WHEEL_NAME=$NEWNAME" >> $GITHUB_ENV
+          echo "WHEEL_PATH=$NEWPATH" >> $GITHUB_ENV
+
+      - name: Upload wheel artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.WHEEL_NAME }}
+          path: ${{ env.WHEEL_PATH }}
+
+  release-wheels:
+    name: Create GitHub Release and upload wheels
+    runs-on: ubuntu-latest
+    needs: build-and-upload-wheel-package
+    permissions:
+      contents: write
+    if: success() && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    steps:
+      - name: Download all wheel artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: wheel-artifacts
+          merge-multiple: true
+
+      - name: Create Release and upload wheels
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: wheels-${{ github.sha }}
+          name: Wheels ${{ github.sha }}
+          draft: false
+          generate_release_notes: true
+          files: wheel-artifacts/*.whl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
