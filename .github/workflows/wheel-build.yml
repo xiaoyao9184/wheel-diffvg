@@ -9,15 +9,6 @@ on:
       - diffvg
       - .github/workflows/wheel-build.yml
   workflow_dispatch:
-    inputs:
-      remote_url:
-        description: diffvg remote url(like 'https://github.com/BachiLi/diffvg.git')
-        required: true
-        default: https://github.com/BachiLi/diffvg.git
-      commit_id:
-        description: diffvg commit id(like 'master' '85802a71')
-        required: true
-        default: master
 
 jobs:
   build-and-upload-wheel-package:
@@ -82,52 +73,90 @@ jobs:
           - pytorch/pytorch:2.10.0-cuda12.6-cudnn9-devel
           - pytorch/pytorch:2.10.0-cuda12.8-cudnn9-devel
           - pytorch/pytorch:2.10.0-cuda13.0-cudnn9-devel
-        BRANCH_CHECKOUT:
-          - ${{ github.event.inputs.commit_id || 'master' }}
-        REPO_CHECKOUT:
-          - ${{ github.event.inputs.remote_url || 'https://github.com/BachiLi/diffvg.git' }}
         include:
           - IMAGE_NAME: pytorch/pytorch:1.12.0-cuda11.3-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py37.sh
           - IMAGE_NAME: pytorch/pytorch:1.12.1-cuda11.3-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py37.sh
           - IMAGE_NAME: pytorch/pytorch:1.13.0-cuda11.6-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py38.sh
           - IMAGE_NAME: pytorch/pytorch:1.13.1-cuda11.6-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py38.sh
           - IMAGE_NAME: pytorch/pytorch:2.0.0-cuda11.7-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.1.0-cuda11.8-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.1.0-cuda12.1-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.1.1-cuda12.1-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.1.2-cuda11.8-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.1.2-cuda12.1-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.2.0-cuda11.8-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.2.0-cuda12.1-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.2.1-cuda11.8-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.2.1-cuda12.1-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.2.2-cuda11.8-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.2.2-cuda12.1-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.3.0-cuda11.8-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.3.0-cuda12.1-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.3.1-cuda11.8-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.3.1-cuda12.1-cudnn8-devel
+            REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
+            BRANCH_CHECKOUT: master
             SCRIPT_NAME: build-whl@py310.sh
 
           - IMAGE_NAME: pytorch/pytorch:2.4.0-cuda11.8-cudnn9-devel
