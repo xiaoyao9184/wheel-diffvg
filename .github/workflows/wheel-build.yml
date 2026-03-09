@@ -51,6 +51,37 @@ jobs:
           - pytorch/pytorch:2.3.0-cuda12.1-cudnn8-devel
           - pytorch/pytorch:2.3.1-cuda11.8-cudnn8-devel
           - pytorch/pytorch:2.3.1-cuda12.1-cudnn8-devel
+
+          - pytorch/pytorch:2.4.0-cuda11.8-cudnn9-devel
+          - pytorch/pytorch:2.4.0-cuda12.1-cudnn9-devel
+          - pytorch/pytorch:2.4.0-cuda12.4-cudnn9-devel
+          - pytorch/pytorch:2.4.1-cuda11.8-cudnn9-devel
+          - pytorch/pytorch:2.4.1-cuda12.1-cudnn9-devel
+          - pytorch/pytorch:2.4.1-cuda12.4-cudnn9-devel
+          - pytorch/pytorch:2.5.0-cuda11.8-cudnn9-devel
+          - pytorch/pytorch:2.5.0-cuda12.1-cudnn9-devel
+          - pytorch/pytorch:2.5.0-cuda12.4-cudnn9-devel
+          - pytorch/pytorch:2.6.0-cuda11.8-cudnn9-devel
+          - pytorch/pytorch:2.6.0-cuda12.4-cudnn9-devel
+          - pytorch/pytorch:2.6.0-cuda12.6-cudnn9-devel
+          - pytorch/pytorch:2.7.0-cuda11.8-cudnn9-devel
+          - pytorch/pytorch:2.7.0-cuda12.6-cudnn9-devel
+          - pytorch/pytorch:2.7.0-cuda12.8-cudnn9-devel
+          - pytorch/pytorch:2.7.1-cuda11.8-cudnn9-devel
+          - pytorch/pytorch:2.7.1-cuda12.6-cudnn9-devel
+          - pytorch/pytorch:2.7.1-cuda12.8-cudnn9-devel
+          - pytorch/pytorch:2.8.0-cuda12.6-cudnn9-devel
+          - pytorch/pytorch:2.8.0-cuda12.8-cudnn9-devel
+          - pytorch/pytorch:2.8.0-cuda12.9-cudnn9-devel
+          - pytorch/pytorch:2.9.0-cuda12.6-cudnn9-devel
+          - pytorch/pytorch:2.9.0-cuda12.8-cudnn9-devel
+          - pytorch/pytorch:2.9.0-cuda13.0-cudnn9-devel
+          - pytorch/pytorch:2.9.1-cuda12.6-cudnn9-devel
+          - pytorch/pytorch:2.9.1-cuda12.8-cudnn9-devel
+          - pytorch/pytorch:2.9.1-cuda13.0-cudnn9-devel
+          - pytorch/pytorch:2.10.0-cuda12.6-cudnn9-devel
+          - pytorch/pytorch:2.10.0-cuda12.8-cudnn9-devel
+          - pytorch/pytorch:2.10.0-cuda13.0-cudnn9-devel
         BRANCH_CHECKOUT:
           - ${{ github.event.inputs.commit_id || 'master' }}
         REPO_CHECKOUT:
@@ -98,6 +129,127 @@ jobs:
             SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.3.1-cuda12.1-cudnn8-devel
             SCRIPT_NAME: build-whl@py310.sh
+
+          - IMAGE_NAME: pytorch/pytorch:2.4.0-cuda11.8-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.4.0-cuda12.1-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.4.0-cuda12.4-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.4.1-cuda11.8-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.4.1-cuda12.1-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.4.1-cuda12.4-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.5.0-cuda11.8-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.5.0-cuda12.1-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.5.0-cuda12.4-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.6.0-cuda11.8-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.6.0-cuda12.4-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.6.0-cuda12.6-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.7.0-cuda11.8-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.7.0-cuda12.6-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.7.0-cuda12.8-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.7.1-cuda11.8-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.7.1-cuda12.6-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.7.1-cuda12.8-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.8.0-cuda12.6-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.8.0-cuda12.8-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.8.0-cuda12.9-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.9.0-cuda12.6-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.9.0-cuda12.8-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.9.0-cuda13.0-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.9.1-cuda12.6-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.9.1-cuda12.8-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.9.1-cuda13.0-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.10.0-cuda12.6-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.10.0-cuda12.8-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
+          - IMAGE_NAME: pytorch/pytorch:2.10.0-cuda13.0-cudnn9-devel
+            REPO_CHECKOUT: https://github.com/Hemistone/diffvg.git
+            BRANCH_CHECKOUT: cfd307d93e788a17bd600e31713560d8901e5a66
+            SCRIPT_NAME: build-whl@Hemistone.sh
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
