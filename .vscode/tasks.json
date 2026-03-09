@@ -1,0 +1,71 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "docker: build py37 @1.12.1-cuda11.3-cudnn8-devel",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {}
+            },
+            "command": [
+                "cd diffvg",
+                "&& git remote set-url origin https://github.com/BachiLi/diffvg.git",
+                "&& git fetch origin",
+                "&& git checkout master",
+                "&& cd ..",
+                "&& docker run -it --rm -v $(pwd):/workspace -w /workspace/diffvg pytorch/pytorch:1.12.1-cuda11.3-cudnn8-devel bash /workspace/script/build-whl@py37.sh",
+            ]
+        },
+        {
+            "label": "docker: build py310 @2.3.1-cuda11.8-cudnn8-devel",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {}
+            },
+            "command": [
+                "cd diffvg",
+                "&& git remote set-url origin https://github.com/BachiLi/diffvg.git",
+                "&& git fetch origin",
+                "&& git checkout master",
+                "&& cd ..",
+                "&& docker run -it --rm -v $(pwd):/workspace -w /workspace/diffvg pytorch/pytorch:2.3.1-cuda11.8-cudnn8-devel bash /workspace/script/build-whl@py310.sh",
+            ]
+        },
+        {
+            "label": "docker: build py311 @2.4.0-cuda12.4-cudnn9-devel",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {}
+            },
+            "command": [
+                "cd diffvg",
+                "&& git remote set-url origin https://github.com/Hemistone/diffvg.git",
+                "&& git fetch origin",
+                "&& git checkout cfd307d93e788a17bd600e31713560d8901e5a66",
+                "&& cd ..",
+                "&& docker run -it --rm -v $(pwd):/workspace -w /workspace/diffvg pytorch/pytorch:2.4.0-cuda12.4-cudnn9-devel bash /workspace/script/build-whl@Hemistone.sh",
+            ]
+        },
+        {
+            "label": "docker: build py312 @2.10.0-cuda13.0-cudnn9-devel",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {}
+            },
+            "command": [
+                "cd diffvg",
+                "&& git remote set-url origin https://github.com/Hemistone/diffvg.git",
+                "&& git fetch origin",
+                "&& git checkout cfd307d93e788a17bd600e31713560d8901e5a66",
+                "&& cd ..",
+                "&& docker run -it --rm -v $(pwd):/workspace -w /workspace/diffvg pytorch/pytorch:2.10.0-cuda13.0-cudnn9-devel bash /workspace/script/build-whl@Hemistone.sh",
+            ]
+        }
+    ]
+}
