@@ -6,6 +6,8 @@ export DIFFVG_CUDA=1
 export CUDA_HOME=/usr/local/cuda
 export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+export CC=$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-cc
+export CXX=$CONDA_PREFIX/bin/x86_64-conda-linux-gnu-c++
 
 pip install scipy==1.7.3
 
