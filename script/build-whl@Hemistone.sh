@@ -24,8 +24,14 @@ if command -v conda &>/dev/null; then
     fi
 
     if [[ ! -f /opt/conda/bin/x86_64-conda-linux-gnu-gcc || ! -f /opt/conda/bin/x86_64-conda-linux-gnu-g++ ]]; then
-        echo "==== install gcc_linux-64 and gxx_linux-64 ===="
-        conda install -c main -y gcc_linux-64 gxx_linux-64
+        GCC=$(find /opt/conda/pkgs -path "*/gcc_impl_linux-64*/bin/x86_64-conda-linux-gnu-gcc" | head -n1)
+        GXX=$(find /opt/conda/pkgs -path "*/gxx_impl_linux-64*/bin/x86_64-conda-linux-gnu-g++" | head -n1)
+
+        echo "==== using conda pkgs gcc_linux-64 and gxx_linux-64 ===="
+        echo "GCC=$GCC"
+        echo "GXX=$GXX"
+        export CC=$GCC
+        export CXX=$GXX
     fi
 fi
 
