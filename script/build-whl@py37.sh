@@ -1,6 +1,6 @@
 #!/bin/bash
 
-conda install -c main -y cmake==3.22.1
+conda install -c main -y cmake==3.22.1 libxcrypt
 
 export DIFFVG_CUDA=1
 export CUDA_HOME=/usr/local/cuda
@@ -34,8 +34,8 @@ echo "==== conda libstdc++ (GLIBCXX) versions ===="
 strings /opt/conda/lib/libstdc++.so.6 2>/dev/null | grep GLIBCXX | sort -V || true
 
 
-echo "==== install scipy ===="
-pip install scipy==1.7.3
+# echo "==== install scipy ===="
+# pip install scipy==1.7.3
 
 echo "==== build wheel ===="
 python setup.py install
