@@ -6,13 +6,12 @@ export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 if command -v conda &>/dev/null; then
-  export LD_LIBRARY_PATH=/opt/conda/lib:$LD_LIBRARY_PATH
-  export LIBRARY_PATH=/opt/conda/lib:$LIBRARY_PATH
-  export LDFLAGS="-Wl,-rpath,/opt/conda/lib"
-  export CC=/opt/conda/bin/x86_64-conda-linux-gnu-gcc
-  export CXX=/opt/conda/bin/x86_64-conda-linux-gnu-g++
+    export LD_LIBRARY_PATH=/opt/conda/lib:$LD_LIBRARY_PATH
+    export LIBRARY_PATH=/opt/conda/lib:$LIBRARY_PATH
+    export LDFLAGS="-Wl,-rpath,/opt/conda/lib"
+    export CC=/opt/conda/bin/x86_64-conda-linux-gnu-gcc
+    export CXX=/opt/conda/bin/x86_64-conda-linux-gnu-g++
 
-  if [[ -f /opt/conda/lib/libstdc++.so.6 ]]; then
     if [[ -f /opt/conda/lib/libstdc++.so.6 ]]; then
         echo "==== conda libstdc++ (GLIBCXX) versions ===="
         strings /opt/conda/lib/libstdc++.so.6 2>/dev/null | grep GLIBCXX | sort -V || true
@@ -29,7 +28,6 @@ if command -v conda &>/dev/null; then
         conda install -c main -y gcc_linux-64 gxx_linux-64
     fi
 fi
-
 
 echo "==== build wheel ===="
 pip wheel . --wheel-dir dist --no-deps
