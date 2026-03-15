@@ -1,6 +1,6 @@
 #!/bin/bash
 
-conda install -c main -y cmake==3.22.1 libxcrypt
+conda install -y cmake==3.22.1 libxcrypt
 
 export DIFFVG_CUDA=1
 export CUDA_HOME=/usr/local/cuda
@@ -21,13 +21,13 @@ if [[ -f /opt/conda/lib/libstdc++.so.6 ]]; then
     STDCPP_VER=$(conda list libstdcxx-ng 2>/dev/null | awk '/libstdcxx-ng/{print $2; exit}' | cut -d. -f1,2)
     if [[ -n "$STDCPP_VER" ]]; then
         echo "==== install gcc_linux-64=$STDCPP_VER gxx_linux-64=$STDCPP_VER ===="
-        conda install -c main -y "gcc_linux-64=$STDCPP_VER" "gxx_linux-64=$STDCPP_VER"
+        conda install -y "gcc_linux-64=$STDCPP_VER" "gxx_linux-64=$STDCPP_VER"
     fi
 fi
 
 if [[ ! -f /opt/conda/bin/x86_64-conda-linux-gnu-gcc || ! -f /opt/conda/bin/x86_64-conda-linux-gnu-g++ ]]; then
     echo "==== install gcc_linux-64 and gxx_linux-64 ===="
-    conda install -c main -y gcc_linux-64 gxx_linux-64
+    conda install -y gcc_linux-64 gxx_linux-64
 fi
 
 echo "==== conda libstdc++ (GLIBCXX) versions ===="

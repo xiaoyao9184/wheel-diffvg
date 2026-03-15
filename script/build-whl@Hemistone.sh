@@ -19,7 +19,7 @@ if command -v conda &>/dev/null; then
         STDCPP_VER=$(conda list libstdcxx-ng 2>/dev/null | awk '/libstdcxx-ng/{print $2; exit}' | cut -d. -f1,2)
         if [[ -n "$STDCPP_VER" ]]; then
             echo "==== install gcc_linux-64=$STDCPP_VER gxx_linux-64=$STDCPP_VER ===="
-            conda install -c main -y "gcc_linux-64=$STDCPP_VER" "gxx_linux-64=$STDCPP_VER"
+            conda install -y "gcc_linux-64=$STDCPP_VER" "gxx_linux-64=$STDCPP_VER"
         fi
     fi
 
