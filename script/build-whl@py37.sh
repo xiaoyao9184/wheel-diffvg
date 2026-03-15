@@ -39,6 +39,20 @@ fi
 echo "==== conda libstdc++ (GLIBCXX) versions ===="
 strings /opt/conda/lib/libstdc++.so.6 2>/dev/null | grep GLIBCXX | sort -V || true
 
+echo "==== /opt/conda/lib/libstdc++.so.6 target ===="
+ls -la /opt/conda/lib/libstdc++.so.6 2>/dev/null && readlink -f /opt/conda/lib/libstdc++.so.6 2>/dev/null || true
+echo "==== CC CXX version ===="
+$CC --version 2>/dev/null | head -1 || true
+$CXX --version 2>/dev/null | head -1 || true
+
+
+echo "==== system libstdc++.so.6 (path + target + GLIBCXX) ===="
+for f in /usr/lib/x86_64-linux-gnu/libstdc++.so.6 /usr/lib64/libstdc++.so.6; do
+    if [[ -e "$f" ]]; then ls -la "$f" 2>/dev/null; readlink -f "$f" 2>/dev/null; strings "$f" 2>/dev/null | grep GLIBCXX | sort -V; break; fi
+done
+echo "==== system gcc g++ version ===="
+gcc --version 2>/dev/null | head -1 || true
+g++ --version 2>/dev/null | head -1 || true
 
 # echo "==== install scipy ===="
 # pip install scipy==1.7.3
