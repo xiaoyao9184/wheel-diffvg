@@ -36,9 +36,6 @@ echo "==== conda libstdc++ (GLIBCXX) versions ===="
 strings /opt/conda/lib/libstdc++.so.6 2>/dev/null | grep GLIBCXX | sort -V || true
 
 
-echo "==== install scipy ===="
-pip install scipy==11.10.1
-
 echo "==== build wheel ===="
 python setup.py install
 python setup.py bdist_wheel

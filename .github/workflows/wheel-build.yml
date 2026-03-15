@@ -87,11 +87,11 @@ jobs:
           - IMAGE_NAME: pytorch/pytorch:1.13.0-cuda11.6-cudnn8-devel
             REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
             BRANCH_CHECKOUT: master
-            SCRIPT_NAME: build-whl@py38.sh
+            SCRIPT_NAME: build-whl@py39.sh
           - IMAGE_NAME: pytorch/pytorch:1.13.1-cuda11.6-cudnn8-devel
             REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
             BRANCH_CHECKOUT: master
-            SCRIPT_NAME: build-whl@py38.sh
+            SCRIPT_NAME: build-whl@py310.sh
           - IMAGE_NAME: pytorch/pytorch:2.0.0-cuda11.7-cudnn8-devel
             REPO_CHECKOUT: https://github.com/BachiLi/diffvg.git
             BRANCH_CHECKOUT: master
