@@ -6,6 +6,13 @@ export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 if command -v conda &>/dev/null; then
+    # fix install gcc_linux-64/gxx_linux-64 RemoveError: 'setuptools'
+    # see https://stackoverflow.com/questions/57549872/removeerror-setuptools-is-a-dependency-of-conda-and-cannot-be-removed-from-co
+    if [[ "${PYTORCH_VERSION:-}" == 2.8.0* ]]; then
+        conda update --force-reinstall conda
+        conda update setuptools
+    fi
+
     export LD_LIBRARY_PATH=/opt/conda/lib:$LD_LIBRARY_PATH
     export LIBRARY_PATH=/opt/conda/lib:$LIBRARY_PATH
     export LDFLAGS="-Wl,-rpath,/opt/conda/lib"
