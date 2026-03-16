@@ -1,6 +1,9 @@
 #!/bin/bash
 
-conda install -y cmake==3.22.1 libxcrypt
+conda install -y cmake==3.22.1 libxcrypt==4.4.36
+# fix `crypt.h: No such file or directory` see https://github.com/stanford-futuredata/ColBERT/issues/309
+export CPATH=/opt/conda/include/
+
 
 export DIFFVG_CUDA=1
 export CUDA_HOME=/usr/local/cuda
@@ -54,8 +57,8 @@ echo "==== system gcc g++ version ===="
 gcc --version 2>/dev/null | head -1 || true
 g++ --version 2>/dev/null | head -1 || true
 
-# echo "==== install scipy ===="
-# pip install scipy==1.7.3
+echo "==== install scipy ===="
+pip install scipy==1.7.3
 
 echo "==== build wheel ===="
 python setup.py install
