@@ -14,7 +14,8 @@
                 "cd diffvg",
                 "&& git remote set-url origin https://github.com/BachiLi/diffvg.git",
                 "&& git fetch origin",
-                "&& git checkout master",
+                "&& git checkout 85802a71fbcc72d79cb75716eb4da4392fd09532",
+                "&& git submodule update --init --recursive",
                 "&& cd ..",
                 "&& docker run -it --rm -v $(pwd):/workspace -w /workspace/diffvg pytorch/pytorch:1.12.1-cuda11.3-cudnn8-devel bash /workspace/script/build-whl@py37.sh",
             ]
@@ -30,7 +31,8 @@
                 "cd diffvg",
                 "&& git remote set-url origin https://github.com/BachiLi/diffvg.git",
                 "&& git fetch origin",
-                "&& git checkout master",
+                "&& git checkout 85802a71fbcc72d79cb75716eb4da4392fd09532",
+                "&& git submodule update --init --recursive",
                 "&& cd ..",
                 "&& docker run -it --rm -v $(pwd):/workspace -w /workspace/diffvg pytorch/pytorch:2.3.1-cuda11.8-cudnn8-devel bash /workspace/script/build-whl@py310.sh",
             ]
