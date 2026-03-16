@@ -1,6 +1,8 @@
 #!/bin/bash
 
-conda install -y cmake==3.22.1 libxcrypt==4.4.36
+conda install -y cmake==3.22.1
+
+conda install -y -c conda-forge libxcrypt==4.4.36
 # fix `crypt.h: No such file or directory` see https://github.com/stanford-futuredata/ColBERT/issues/309
 export CPATH=/opt/conda/include/
 
