@@ -22,8 +22,11 @@ if [[ -f /opt/conda/lib/libstdc++.so.6 ]]; then
 
     STDCPP_VER=$(conda list libstdcxx-ng 2>/dev/null | awk '/libstdcxx-ng/{print $2; exit}' | cut -d. -f1,2)
     if [[ -n "$STDCPP_VER" ]]; then
-        echo "==== install gcc_linux-64=$STDCPP_VER gxx_linux-64=$STDCPP_VER ===="
-        conda install -y "gcc_linux-64=$STDCPP_VER" "gxx_linux-64=$STDCPP_VER"
+        CHANNEL=$(conda list libstdcxx-ng --json | python3 -c \
+            'import sys,json;d=json.load(sys.stdin);print(d[0].get("channel",""))')
+        CHANNEL=${CHANNEL#pkgs/}
+        echo "==== install $CHANNEL:gcc_linux-64=$STDCPP_VER $CHANNEL:gxx_linux-64=$STDCPP_VER ===="
+        conda install -y -c $CHANNEL "gcc_linux-64=$STDCPP_VER" "gxx_linux-64=$STDCPP_VER"
     fi
 fi
 
